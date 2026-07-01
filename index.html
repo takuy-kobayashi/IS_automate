@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>SFA / MiiTel 業務効率化ツール</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* 通知のふわっと消えるアニメーション */
+        @keyframes fadeOut {
+            0% { opacity: 0; transform: translate(-50%, -50%) scale(0.9); }
+            10% { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+            80% { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+            100% { opacity: 0; transform: translate(-50%, -50%) scale(1); }
+        }
+        .toast-center {
+            animation: fadeOut 2.5s forwards;
+        }
+    </style>
+</head>
+<body class="bg-slate-50 flex min-h-screen text-slate-800">
+
+    <!-- サイドバー -->
+    <aside class="w-64 bg-slate-900 text-slate-300 p-8 flex flex-col shrink-0">
+        <h1 class="text-white font-bold text-lg mb-8">SFA / MiiTel<br><span class="text-emerald-400 text-sm">業務効率化ツール</span></h1>
+        <nav class="space-y-6">
+            <a href="#procedure" class="flex items-center gap-3 text-white">操作手順</a>
+            <div class="text-xs text-slate-500 font-bold uppercase tracking-widest mt-8">SFA貼付</div>
+            <a href="#new" class="flex items-center gap-3 hover:text-white">新着用コード</a>
+            <div class="text-xs text-slate-500 font-bold uppercase tracking-widest mt-8">ターミナル貼付</div>
+            <a href="#terminal" class="flex items-center gap-3 hover:text-white">通知ツール</a>
+        </nav>
+    </aside>
+
+    <!-- メインコンテンツ -->
+    <main class="flex-1 p-10">
+
+        <!-- 有効期限表示セクション -->
+        <div class="bg-rose-600 text-white p-4 rounded-2xl mb-8 flex items-center justify-center shadow-lg border-2 border-rose-700">
+            <span class="font-black text-lg tracking-wider">⚠️ 有効期限：2026年7月31日まで</span>
+        </div>
+        
+        <!-- 操作手順セクション -->
+        <section id="procedure" class="bg-white p-8 rounded-2xl border border-slate-200 shadow-sm mb-10">
+            <div class="border-b border-slate-200 pb-4 mb-6">
+                <h2 class="text-2xl font-black text-slate-900">操作手順</h2>
+            </div>
+            <div class="space-y-8">
+                <div class="flex gap-4">
+                    <span class="font-bold bg-emerald-100 text-emerald-700 w-8 h-8 flex items-center justify-center rounded-full shrink-0">1</span>
+                    <p>キーボードの <span class="bg-slate-200 px-2 py-1 rounded font-mono">Fn</span> + <span class="bg-slate-200 px-2 py-1 rounded font-mono">F12</span> を押して「デベロッパーツール」を起動します。</p>
+                </div>
+                <div class="flex gap-4">
+                    <span class="font-bold bg-emerald-100 text-emerald-700 w-8 h-8 flex items-center justify-center rounded-full shrink-0">2</span>
+                    <p>上部タブから「Console」パネルを選択してください。</p>
+                </div>
+                <div class="flex gap-4">
+                    <span class="font-bold bg-emerald-100 text-emerald-700 w-8 h-8 flex items-center justify-center rounded-full shrink-0">3</span>
+                    <p>【初回のみ】<span class="bg-slate-200 px-2 py-1 rounded font-mono text-rose-600">allow pasting</span> とコンソールに入力して Enter を押します。</p>
+                </div>
+                <div class="flex gap-4">
+                    <span class="font-bold bg-emerald-100 text-emerald-700 w-8 h-8 flex items-center justify-center rounded-full shrink-0">4</span>
+                    <p>項目からコードをコピーし、コンソールに貼り付けて Enter で実行します。</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- SFA貼付セクション -->
+        <h2 class="text-xl font-bold mb-6 flex items-center gap-2">
+            <span class="w-1 h-6 bg-violet-500 rounded-full"></span> SFA貼付
+        </h2>
+        <section id="new" class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm mb-10">
+            <h3 class="font-bold mb-4 text-slate-700">新着用コード</h3>
+            <div class="relative">
+                <textarea id="code-new" class="w-full bg-slate-950 text-emerald-400 font-mono text-xs p-5 rounded-xl h-24" readonly>javascript:(function() {var L = 1782831599000, W = 0, CD = 2, R = 20, T = "ステータスを「対応中」", H = "【HIT】対応中", S = "対応";if (Date.now() > L) { alert("期限切れ"); return; }var r = !1, c = !1, w = null, tl = null, ot = document.title;var obs = null;var _c = document.getElementById("_ui_p");if (_c) _c.remove();var d = document.createElement("div");d.id = "_ui_p";d.style.cssText = "position: fixed; top: 0; left: 0; z-index: 999999;background: #121212; color: #e0e0e0;width: 260px; height: 45px;padding: 0 12px;border: 1px solid #333; border-radius: 8px;box-shadow: 0 4px 20px rgba(0,0,0,0.6);font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;font-size: 13px;display: flex; align-items: center; justify-content: space-between;cursor: move; user-select: none; box-sizing: border-box;";d.innerHTML = "<div style='display:flex; flex-direction:column; justify-content:center;'><span id='st' style='font-weight:bold; letter-spacing:0.5px;'>■ 停止中</span><span style='font-size:9px; color:#666;'>Ctrl + M to Toggle</span></div><div style='display:flex; gap:6px; align-items:center;'><button id='lm' style='cursor:pointer; background:#2a2a2a; color:#fff; border:1px solid #444; border-radius:4px; padding:4px 8px; font-size:11px;'>R:" + R + "</button><button id='bn' style='cursor:pointer; background:#28a745; color:#fff; border:none; border-radius:4px; padding:6px 14px; font-weight:600; transition:all 0.2s;'>開始</button></div>";document.body.appendChild(d);var es = d.querySelector("#st"), el = d.querySelector("#lm"), eb = d.querySelector("#bn");var _a = false, _b = { x: 0, y: 0 };d.addEventListener('mousedown', function(e) { _a = true; _b.x = e.clientX - d.offsetLeft; _b.y = e.clientY - d.offsetTop; d.style.opacity = "0.8"; });document.addEventListener('mousemove', function(e) { if (_a) { d.style.left = (e.clientX - _b.x) + 'px'; d.style.top = (e.clientY - _b.y) + 'px'; } });document.addEventListener('mouseup', function() { _a = false; d.style.opacity = "1.0"; });window.addEventListener('keydown', function(e) { if (e.ctrlKey && e.key.toLowerCase() === 'm') { e.preventDefault(); eb.click(); } });function U() { if (c) { es.innerText = "📞 BUSY (2m)"; es.style.color = "#00ffcc"; eb.innerText = "休桮中"; eb.style.background = "#555"; } else { es.innerText = r ? "▶ 起動中" : "■ 停止中"; es.style.color = r ? "#00ff88" : "#888"; eb.innerText = r ? "停止" : "開始"; eb.style.background = r ? "#dc3545" : "#28a745"; } el.innerText = "R:" + R; }function IW() { if (w) w.terminate(); var b = new Blob(["setInterval(()=>postMessage('t'),10)"]); w = new Worker(URL.createObjectURL(b)); w.onmessage = function() { if (r && !c) CL(); }; }function LT(x) { if (document.title.indexOf("【HIT】") === -1) ot = document.title; if (tl) clearInterval(tl); document.title = x; tl = setInterval(function() { document.title = x; }, 100); }function UT() { if (tl) clearInterval(tl); tl = null; if (ot) document.title = ot; }function VF() { var k = 0, _d = setInterval(function() { k++; var _e = document.body.innerText || ""; if (_e.indexOf(T) !== -1) { clearInterval(_d); r = !1; if (w) w.terminate(); if (obs) obs.disconnect(); UT(); U(); try { new Audio("data:audio/wav;base64,UklGRl9vT19XQVZFZm10IBAAAAABAAEAQB8AAEAfAAABAAgAZGF0YU").play(); } catch (e) {} } else if (k > 40) { clearInterval(_d); UT(); c = !1; r = !0; U(); } }, 100); }function HT(e) { r = !1; U(); LT(H); setTimeout(function() { if (document.body.contains(e)) e.click(); VF(); }, W); }function GE(n, z) { if (!z) z = []; if (!n) return z; var q = n.querySelectorAll("*"); for (var i = 0; i < q.length; i++) { if (q[i].offsetWidth > 0) z.push(q[i]); if (q[i].shadowRoot) GE(q[i].shadowRoot, z); } return z; }function CL() { if (!r) return; var _f = GE(document), _g = []; for (var i = 0; i < _f.length; i++) { var e = _f[i]; if ((e.tagName == "BUTTON" || e.tagName == "A") && (e.innerText || "").trim() === S) _g.push(e); } _g.sort(function(a, b) { return a.getBoundingClientRect().top - b.getBoundingClientRect().top; }); var _h = _g.slice(0, R); for (var j = _h.length - 1; j >= 0; j--) { var b = _h[j], _i = b.getBoundingClientRect(), y = _i.top + _i.height / 2, h = _f.some(function(x) { if (x === b) return !1; var t = (x.innerText || "").trim(); if (t !== "NEW") return !1; var _j = x.getBoundingClientRect(); return Math.abs((_j.top + _j.height / 2) - y) < 8; }); if (h) { HT(b); return; } } var u = _f.find(function(e) { var t = (e.innerText || "").trim(), ti = (e.getAttribute("title") || "").trim(); return e.tagName === "BUTTON" && (t === "更新" || ti === "更新"); }); if (u) u.click(); }el.onclick = function() { R = R === 10 ? 20 : 10; U(); };eb.onclick = function() { if (r) { r = !1; U(); if (w) w.terminate(); if (obs) obs.disconnect(); UT(); } else { UT(); r = !0; U(); IW(); if (obs) obs.disconnect(); obs = new MutationObserver(function() { if (r && !c) CL(); }); obs.observe(document.body, { childList: !0, subtree: !0, characterData: !0 }); } };})();</textarea>
+                <button onclick="copyCode('code-new')" class="absolute bottom-4 right-4 bg-emerald-600 text-white px-4 py-2 rounded-lg text-xs font-bold hover:bg-emerald-500">コピー</button>
+            </div>
+        </section>
+
+        <!-- ターミナル貼付セクション -->
+        <h2 class="text-xl font-bold mb-6 flex items-center gap-2">
+            <span class="w-1 h-6 bg-emerald-500 rounded-full"></span> ターミナル貼付
+        </h2>
+        <section id="terminal" class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm">
+            <h3 class="font-bold mb-4 text-slate-700">通知ツール</h3>
+            <div class="relative">
+                <textarea id="code-terminal" class="w-full bg-slate-950 text-emerald-400 font-mono text-xs p-5 rounded-xl h-24" readonly>Add-Type -AssemblyName System.Windows.Forms
+Add-Type -AssemblyName System.Drawing
+$win32 = @"
+using System; using System.Runtime.InteropServices; using System.Text; using System.Collections.Generic;
+public class Win32 {
+ [DllImport("user32.dll")] public static extern bool EnumWindows(EnumWindowsProc enumProc, IntPtr lParam);
+ [DllImport("user32.dll", CharSet = CharSet.Unicode)] public static extern int GetWindowText(IntPtr hWnd, StringBuilder lpString, int nMaxCount);
+ [DllImport("user32.dll")] public static extern bool IsWindowVisible(IntPtr hWnd);
+ public delegate bool EnumWindowsProc(IntPtr hWnd, IntPtr lParam);
+ public static List<string> GetWindowTitles() {
+  List<string> titles = new List<string>();
+  EnumWindows(delegate(IntPtr hWnd, IntPtr lParam) {
+   if (IsWindowVisible(hWnd)) {
+    StringBuilder sb = new StringBuilder(256); GetWindowText(hWnd, sb, sb.Capacity);
+    if (sb.Length > 0) titles.Add(sb.ToString());
+   } return true;
+  }, IntPtr.Zero); return titles;
+ }
+}
+"@
+Add-Type -TypeDefinition $win32
+$form = New-Object System.Windows.Forms.Form
+$form.Text = "SFA Monitor"
+$form.Size = New-Object System.Drawing.Size(220, 80)
+$form.StartPosition = "Manual"
+$form.Location = New-Object System.Drawing.Point(10, 10)
+$form.TopMost = $true
+$form.Opacity = 0.9
+$form.FormBorderStyle = "Sizable"
+$form.MaximizeBox = $false
+$form.MinimizeBox = $false
+$form.BackColor = [System.Drawing.Color]::FromArgb(30, 30, 30)
+$label = New-Object System.Windows.Forms.Label
+$label.Text = "監視中..."
+$label.Font = New-Object System.Drawing.Font("Meiryo UI", 11, [System.Drawing.FontStyle]::Bold)
+$label.ForeColor = [System.Drawing.Color]::Gray
+$label.AutoSize = $false
+$label.TextAlign = "MiddleCenter"
+$label.Dock = "Fill"
+$form.Controls.Add($label)
+$timer = New-Object System.Windows.Forms.Timer
+$timer.Interval = 100
+$timer.Add_Tick({
+ try {
+  $titles = [Win32]::GetWindowTitles()
+  $hits = @()
+  foreach ($t in $titles) {
+   if ($t -like "*【HIT】対応中*") { $hits += "新着獲得" }
+   if ($t -like "*【HIT】2nd*") { $hits += "2nd獲得" }
+   if ($t -like "*【HIT】追*") { $hits += "追いかけ" }
+  }
+  $uniqueHits = $hits | Select-Object -Unique
+  if ($uniqueHits) {
+   $msg = $uniqueHits -join " & "
+   if ($label.Text -ne $msg) {
+    $label.Text = $msg
+    $label.ForeColor = [System.Drawing.Color]::White
+    if ($uniqueHits -contains "新着獲得") { $form.BackColor = [System.Drawing.Color]::Purple }
+    elseif ($uniqueHits -contains "2nd獲得") { $form.BackColor = [System.Drawing.Color]::DarkRed }
+    else { $form.BackColor = [System.Drawing.Color]::DarkOrange }
+    [Console]::Beep(2000, 50)
+   }
+  } else {
+   if ($label.Text -ne "監視中...") {
+    $label.Text = "監視中..."
+    $label.ForeColor = [System.Drawing.Color]::Gray
+    $form.BackColor = [System.Drawing.Color]::FromArgb(30, 30, 30)
+   }
+  }
+ } catch {}
+})
+$timer.Start()
+$form.ShowDialog() | Out-Null
+$timer.Stop()</textarea>
+                <button onclick="copyCode('code-terminal')" class="absolute bottom-4 right-4 bg-emerald-600 text-white px-4 py-2 rounded-lg text-xs font-bold hover:bg-emerald-500">コピー</button>
+            </div>
+        </section>
+    </main>
+
+    <!-- 中央表示用の巨大通知 -->
+    <div id="toast" class="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-slate-900/90 text-white px-12 py-8 rounded-3xl shadow-2xl font-black text-3xl hidden whitespace-nowrap border-4 border-emerald-500 z-50">
+        ✅ コピー完了！
+    </div>
+
+    <script>
+        function copyCode(id) {
+            const textarea = document.getElementById(id);
+            textarea.select();
+            document.execCommand('copy');
+            
+            // 通知を表示
+            const toast = document.getElementById('toast');
+            toast.classList.remove('hidden');
+            toast.classList.add('toast-center');
+            
+            // 2.5秒後に非表示に戻す
+            setTimeout(() => {
+                toast.classList.add('hidden');
+                toast.classList.remove('toast-center');
+            }, 2500);
+        }
+    </script>
+</body>
+</html>
