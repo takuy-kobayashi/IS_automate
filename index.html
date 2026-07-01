@@ -143,7 +143,7 @@ $timer.Add_Tick({
     if ($uniqueHits -contains "新着獲得") { $form.BackColor = [System.Drawing.Color]::Purple }
     elseif ($uniqueHits -contains "2nd獲得") { $form.BackColor = [System.Drawing.Color]::DarkRed }
     else { $form.BackColor = [System.Drawing.Color]::DarkOrange }
-    [Console]::Beep(2000, 50)
+    [System.Media.SystemSounds]::Asterisk.Play()
    }
   } else {
    if ($label.Text -ne "監視中...") {
